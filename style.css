@@ -666,6 +666,7 @@ ul {
   opacity: 1;
 }
 
+/* Overlay Links and Icons */
 .overlay-link {
   width: 3.5rem;
   height: 3.5rem;
@@ -676,12 +677,23 @@ ul {
   justify-content: center;
   color: var(--text-secondary);
   transition: all var(--transition-speed) ease;
+  text-decoration: none;
+}
+
+.overlay-link i {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  transition: color var(--transition-speed) ease;
 }
 
 .overlay-link:hover {
   color: var(--text-primary);
   border-color: var(--text-primary);
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.overlay-link:hover i {
+  color: var(--text-primary);
 }
 
 .project-details {

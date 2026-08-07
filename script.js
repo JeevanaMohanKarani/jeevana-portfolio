@@ -31,14 +31,6 @@ const projectsData = [
     tag: ["All", "Web"],
     gitUrl: "https://github.com/JeevanaMohanKarani/Driving-School",
     previewUrl: "https://github.com/JeevanaMohanKarani/Driving-School"
-  },
-  {
-    id: 5,
-    title: "AWS Cloud Practitioner Notes",
-    image: "./images/projects/aws-notes.png",
-    tag: ["All", "Cloud"],
-    gitUrl: "https://github.com/JeevanaMohanKarani/AWS-Certified-Cloud-Practitioner-Certification-My-Notes",
-    previewUrl: "https://github.com/JeevanaMohanKarani/AWS-Certified-Cloud-Practitioner-Certification-My-Notes"
   }
 ];
 
