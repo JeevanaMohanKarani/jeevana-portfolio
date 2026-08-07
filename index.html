@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeevana Karani - Portfolio</title>
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons (or custom SVGs/FontAwesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="home">
+    <div class="nav-container">
+      <a href="#home" class="logo">..</a>
+      
+      <!-- Mobile Menu Toggle Button -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+      </button>
+
+      <!-- Nav Links -->
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#project" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="gradient-text">Hello, I'm</span>
+          <br>
+          <span id="typewriter" class="typewriter-text"></span>
+        </h1>
+        <p class="hero-desc">
+          My name is Jeevana Karani. I'm highly interested in coding and technology, although I'm currently at a beginner level. With an optimistic outlook, I'm eager to learn more and am determined to give my best in everything I pursue.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Hire Me</a>
+          <a href="https://drive.google.com/uc?id=1oD79ry2c8pMm7M_TqLpDDiq75LdL22qL&export=download" class="btn btn-secondary" target="_blank">
+            <span class="btn-inner">Download CV</span>
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-image-container">
+        <div class="pfp-frame">
+          <img src="./images/pfp.png" alt="Jeevana Karani Profile Picture" class="pfp-img">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="container">
+    
+    <!-- About Section -->
+    <section class="about-section" id="about">
+      <div class="about-grid">
+        <div class="about-image-container">
+          <img src="./images/about.jpg" alt="About Me Image" class="about-img">
+        </div>
+        <div class="about-content">
+          <h2 class="section-title">About Me</h2>
+          <p class="about-desc">
+            I'm Thasneem, a programmer with a passion for web development. My journey into web development has been driven by a commitment to deliver the best designs, I strive to bring ideas to life and exceed expectations. When I'm not coding, you can find me painting and reading fiction. Let's collaborate and turn your visions into reality!
+          </p>
+          
+          <!-- Interactive Tabs -->
+          <div class="tabs-container">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="skills">Skills</button>
+              <button class="tab-btn" data-tab="education">Education</button>
+              <button class="tab-btn" data-tab="certifications">Certifications</button>
+            </div>
+            
+            <div class="tab-content-container">
+              <!-- Skills Tab -->
+              <div class="tab-pane active" id="skills">
+                <ul class="list-disc">
+                  <li>Python</li>
+                  <li>C language</li>
+                  <li>Data Structures using C</li>
+                  <li>Latex</li>
+                  <li>HTML, CSS</li>
+                  <li>JavaScript</li>
+                  <li>Java</li>
+                  <li>MySQL</li>
+                  <li>Cloud Practitioner</li>
+                  <li>Auto CAD (model designing)</li>
+                </ul>
+              </div>
+              
+              <!-- Education Tab -->
+              <div class="tab-pane" id="education">
+                <ul class="list-disc">
+                  <li>ICFAI Foundation for Higher Education deemed to be University, Hyderabad</li>
+                  <li>PV KrishnaRao Memorial Kumar High School, Nuzvid</li>
+                </ul>
+              </div>
+              
+              <!-- Certifications Tab -->
+              <div class="tab-pane" id="certifications">
+                <ul class="list-disc">
+                  <li>Data Processing and Visualization, FutureSkills Prime (nasscom)</li>
+                  <li>Exploratory Data Analysis, FutureSkills Prime (nasscom)</li>
+                  <li>Acquiring Data, FutureSkills Prime (nasscom)</li>
+                  <li>MATLAB Onramp, MathWorks</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="project">
+      <h2 class="section-title text-center">My Projects</h2>
+      
+      <!-- Filter Tags -->
+      <div class="project-tags">
+        <button class="tag-btn active" data-filter="All">All</button>
+        <button class="tag-btn" data-filter="Web">Web</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" id="projects-grid">
+        <!-- Project Cards will be dynamically rendered / populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Contact / Email Section -->
+    <section class="contact-section" id="contact">
+      <div class="contact-bg-glow"></div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h5 class="contact-subtitle">Let's Connect</h5>
+          <p class="contact-desc">
+            I'm currently looking for new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          </p>
+          <div class="socials">
+            <a href="https://github.com/thasneem9" target="_blank" aria-label="GitHub">
+              <img src="github-icon.svg" alt="Github Icon">
+            </a>
+            <a href="https://www.linkedin.com/in/thasneem-c-a70a75206/" target="_blank" aria-label="LinkedIn">
+              <img src="linkedin-icon.svg" alt="Linkedin Icon">
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-form-container">
+          <div id="form-success-msg" class="success-message hidden">
+            Email sent successfully!
+          </div>
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="email" class="form-label">Your email</label>
+              <input name="email" type="email" id="email" required class="form-input" placeholder="jacob@google.com">
+            </div>
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input name="subject" type="text" id="subject" required class="form-input" placeholder="Just saying hi">
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea name="message" id="message" class="form-textarea" placeholder="Let's talk about..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
