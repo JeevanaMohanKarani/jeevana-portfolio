@@ -31,6 +31,22 @@ const projectsData = [
     tag: ["All", "Web"],
     gitUrl: "https://github.com/JeevanaMohanKarani/Driving-School",
     previewUrl: "https://github.com/JeevanaMohanKarani/Driving-School"
+  },
+  {
+    id: 5,
+    title: "Explainable AI Customer Churn Predictor",
+    image: "./images/projects/explainable-churn.png",
+    tag: ["All", "AI/ML"],
+    gitUrl: "https://github.com/JeevanaMohanKarani/explainable-ai-churn",
+    previewUrl: "https://github.com/JeevanaMohanKarani/explainable-ai-churn"
+  },
+  {
+    id: 6,
+    title: "Generative AI Document RAG Chatbot",
+    image: "./images/projects/rag-chatbot.png",
+    tag: ["All", "AI/ML"],
+    gitUrl: "https://github.com/JeevanaMohanKarani/rag-pdf-chatbot",
+    previewUrl: "https://github.com/JeevanaMohanKarani/rag-pdf-chatbot"
   }
 ];
 
