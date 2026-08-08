@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jeevana Karani - Portfolio</title>
+  <title>Jeevana Karani - SaaS & AI Portfolio</title>
   <!-- Google Fonts - Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,9 @@
   <div class="side-dots" id="side-dots">
     <a href="#home" class="dot active" data-target="home" title="Home"><span class="dot-tooltip">Home</span></a>
     <a href="#about" class="dot" data-target="about" title="About"><span class="dot-tooltip">About</span></a>
+    <a href="#console" class="dot" data-target="console" title="AI Console"><span class="dot-tooltip">AI Console</span></a>
     <a href="#project" class="dot" data-target="project" title="Projects"><span class="dot-tooltip">Projects</span></a>
+    <a href="#pricing" class="dot" data-target="pricing" title="Pricing"><span class="dot-tooltip">Pricing</span></a>
     <a href="#contact" class="dot" data-target="contact" title="Contact"><span class="dot-tooltip">Contact</span></a>
   </div>
 
@@ -51,7 +53,9 @@
       <div class="nav-menu" id="nav-menu">
         <ul class="nav-links">
           <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#console" class="nav-link">Console</a></li>
           <li><a href="#project" class="nav-link">Projects</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </div>
@@ -158,6 +162,53 @@
       </div>
     </section>
 
+    <!-- AI Workspace Console Section -->
+    <section class="console-section" id="console">
+      <h2 class="section-title text-center">AI Workspace Console</h2>
+      <p class="console-subtitle text-center">Run neural network training pipelines and compute live predictions directly in your browser.</p>
+      
+      <div class="console-wrapper">
+        <!-- Dashboard widgets -->
+        <div class="console-dashboard">
+          <div class="stat-card">
+            <span class="stat-label">Model Accuracy</span>
+            <span class="stat-value" id="stat-accuracy">98.6%</span>
+            <div class="stat-indicator green"></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Inference Latency</span>
+            <span class="stat-value" id="stat-latency">12ms</span>
+            <div class="stat-indicator green"></div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">GPU VRAM Usage</span>
+            <span class="stat-value" id="stat-vram">14.2 GB</span>
+            <div class="stat-indicator orange"></div>
+          </div>
+        </div>
+        
+        <!-- Interactive Terminal Emulator -->
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="terminal-buttons">
+              <span class="t-btn red"></span>
+              <span class="t-btn yellow"></span>
+              <span class="t-btn green"></span>
+            </div>
+            <span class="terminal-title">jeevana-ai-console ~ bash</span>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <div class="term-line welcome">Welcome to Jeevana AI Console. System is online.</div>
+            <div class="term-line">Ready to compile data or deploy. Press 'Train Model' or 'Run Inference' below.</div>
+          </div>
+          <div class="terminal-controls">
+            <button class="console-action-btn" id="btn-train">Train Model</button>
+            <button class="console-action-btn" id="btn-infer">Run Inference</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Projects Section -->
     <section class="projects-section" id="project">
       <h2 class="section-title text-center">My Projects</h2>
@@ -173,6 +224,68 @@
       <!-- Projects Grid -->
       <div class="projects-grid" id="projects-grid">
         <!-- Project Cards will be dynamically rendered -->
+      </div>
+    </section>
+
+    <!-- SaaS Pricing / Services Section -->
+    <section class="pricing-section" id="pricing">
+      <h2 class="section-title text-center">Pricing & Service Plans</h2>
+      <p class="pricing-subtitle text-center">Flexible engagement plans structured around your AI model and Data Science pipeline requirements.</p>
+      
+      <div class="billing-toggle-container">
+        <span class="billing-label active" id="billing-monthly">Monthly</span>
+        <label class="switch">
+          <input type="checkbox" id="pricing-toggle" aria-label="Toggle billing frequency">
+          <span class="slider round"></span>
+        </label>
+        <span class="billing-label" id="billing-annually">Annually <span class="discount-badge">Save 20%</span></span>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Pricing Card 1 -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="plan-name">Lite Consultation</h3>
+            <span class="plan-price" id="price-consult">$150<span class="price-period">/mo</span></span>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-check"></i> 1-on-1 AI Architecture Consultation</li>
+            <li><i class="fa-solid fa-check"></i> Project Scope & Feasibility Report</li>
+            <li><i class="fa-solid fa-check"></i> 1 Month Email Support</li>
+          </ul>
+          <a href="#contact" class="btn btn-secondary"><span class="btn-inner">Choose Plan</span></a>
+        </div>
+        
+        <!-- Pricing Card 2 (Popular) -->
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3 class="plan-name">Model Design</h3>
+            <span class="plan-price" id="price-design">$1,200<span class="price-period">/mo</span></span>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-check"></i> Custom CNN/RNN Architecture</li>
+            <li><i class="fa-solid fa-check"></i> Dataset Engineering & Preprocessing</li>
+            <li><i class="fa-solid fa-check"></i> Dashboard Interface (Streamlit)</li>
+            <li><i class="fa-solid fa-check"></i> 3 Months Code Handover & Support</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Choose Plan</a>
+        </div>
+        
+        <!-- Pricing Card 3 -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="plan-name">Enterprise Integration</h3>
+            <span class="plan-price" id="price-integration">$3,500<span class="price-period">/mo</span></span>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fa-solid fa-check"></i> End-to-End MLOps Pipeline</li>
+            <li><i class="fa-solid fa-check"></i> LangChain / RAG System Integration</li>
+            <li><i class="fa-solid fa-check"></i> Docker & Cloud Deployment (AWS)</li>
+            <li><i class="fa-solid fa-check"></i> 6 Months Support & Updates</li>
+          </ul>
+          <a href="#contact" class="btn btn-secondary"><span class="btn-inner">Choose Plan</span></a>
+        </div>
       </div>
     </section>
 
@@ -211,6 +324,10 @@
             <div class="form-group">
               <label for="message" class="form-label">Message</label>
               <textarea name="message" id="message" class="form-textarea" placeholder="Let's talk about..."></textarea>
+            </div>
+            <div class="form-group" style="display: none;">
+              <!-- Hidden input field for plan choice selection -->
+              <input type="text" name="selected_plan" id="selected-plan-input">
             </div>
             <button type="submit" class="btn-submit">Send Message</button>
           </form>

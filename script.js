@@ -60,6 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
   initCommandPalette();
   initScrollHighlight();
+  initSaaSPricing();
+  initAIConsole();
 });
 
 // Typewriter Animation
@@ -231,7 +233,6 @@ function initThemeToggle() {
   const themeIcon = document.getElementById("theme-icon");
   const html = document.documentElement;
 
-  // Retrieve saved theme or default to dark
   const savedTheme = localStorage.getItem("theme") || "dark";
   html.setAttribute("data-theme", savedTheme);
   updateThemeIcon(savedTheme);
@@ -265,10 +266,11 @@ function initCommandPalette() {
   let selectedIndex = -1;
   let visibleItems = [];
 
-  // Command palette datasets
   const staticItems = [
     { title: "Navigate to About Section", type: "Section", action: () => scrollToSection("about"), icon: "fa-solid fa-user" },
-    { title: "Navigate to Projects Section", type: "Section", action: () => scrollToSection("project"), icon: "fa-solid fa-code" },
+    { title: "Navigate to AI Console Simulator", type: "Section", action: () => scrollToSection("console"), icon: "fa-solid fa-terminal" },
+    { title: "Navigate to Projects Section", type: "Section", action: () => scrollToSection("project"), icon: "fa-solid sheeting fa-code" },
+    { title: "Navigate to Pricing Section", type: "Section", action: () => scrollToSection("pricing"), icon: "fa-solid fa-credit-card" },
     { title: "Navigate to Contact Section", type: "Section", action: () => scrollToSection("contact"), icon: "fa-solid fa-envelope" },
     { title: "Hire Me / Connect", type: "Action", action: () => scrollToSection("contact"), icon: "fa-solid fa-paper-plane" }
   ];
@@ -286,21 +288,17 @@ function initCommandPalette() {
 
   if (searchBtn) searchBtn.addEventListener("click", openPalette);
   
-  // Close triggers
   palette.addEventListener("click", (e) => {
     if (e.target === palette) closePalette();
   });
 
   window.addEventListener("keydown", (e) => {
-    // Ctrl + K to toggle
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
       palette.classList.contains("open") ? closePalette() : openPalette();
     }
-    // Escape to close
     if (e.key === "Escape") closePalette();
 
-    // Arrow keys & Enter when palette is open
     if (palette.classList.contains("open")) {
       if (e.key === "ArrowDown") {
         e.preventDefault();
@@ -324,12 +322,10 @@ function initCommandPalette() {
     selectedIndex = -1;
     visibleItems = [];
 
-    // Filter static sections
     const filteredStatic = staticItems.filter(item => 
       item.title.toLowerCase().includes(query.toLowerCase())
     );
 
-    // Filter projects
     const filteredProjects = projectsData.filter(project =>
       project.title.toLowerCase().includes(query.toLowerCase())
     ).map(project => ({
@@ -361,7 +357,7 @@ function initCommandPalette() {
       resultsContainer.appendChild(el);
     });
 
-    navigateResults(1); // Select the first element by default
+    navigateResults(1);
   }
 
   function navigateResults(direction) {
@@ -415,4 +411,135 @@ function initScrollHighlight() {
       }
     });
   });
+}
+
+// SaaS Pricing Toggle Billing
+function initSaaSPricing() {
+  const toggle = document.getElementById("pricing-toggle");
+  const labelMonthly = document.getElementById("billing-monthly");
+  const labelAnnually = document.getElementById("billing-annually");
+  
+  const priceConsult = document.getElementById("price-consult");
+  const priceDesign = document.getElementById("price-design");
+  const priceIntegration = document.getElementById("price-integration");
+
+  const planSelectedInput = document.getElementById("selected-plan-input");
+
+  if (!toggle) return;
+
+  toggle.addEventListener("change", () => {
+    if (toggle.checked) {
+      // Annual prices (apply 20% discount)
+      priceConsult.innerHTML = "$120<span class='price-period'>/mo</span>";
+      priceDesign.innerHTML = "$960<span class='price-period'>/mo</span>";
+      priceIntegration.innerHTML = "$2,800<span class='price-period'>/mo</span>";
+      
+      labelMonthly.classList.remove("active");
+      labelAnnually.classList.add("active");
+    } else {
+      // Monthly base prices
+      priceConsult.innerHTML = "$150<span class='price-period'>/mo</span>";
+      priceDesign.innerHTML = "$1,200<span class='price-period'>/mo</span>";
+      priceIntegration.innerHTML = "$3,500<span class='price-period'>/mo</span>";
+      
+      labelMonthly.classList.add("active");
+      labelAnnually.classList.remove("active");
+    }
+  });
+
+  // Track plan selection in form
+  document.querySelectorAll(".pricing-card a, .pricing-card button").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const planName = btn.closest(".pricing-card").querySelector(".plan-name").textContent;
+      if (planSelectedInput) {
+        planSelectedInput.value = planName;
+      }
+    });
+  });
+}
+
+// AI Console Simulator Interactivity
+function initAIConsole() {
+  const btnTrain = document.getElementById("btn-train");
+  const btnInfer = document.getElementById("btn-infer");
+  const terminal = document.getElementById("terminal-body");
+  
+  const accuracyVal = document.getElementById("stat-accuracy");
+  const latencyVal = document.getElementById("stat-latency");
+  const vramVal = document.getElementById("stat-vram");
+
+  if (!terminal) return;
+
+  function printLine(text, className = "") {
+    const line = document.createElement("div");
+    line.className = `term-line ${className}`;
+    line.textContent = text;
+    terminal.appendChild(line);
+    terminal.scrollTop = terminal.scrollHeight;
+  }
+
+  // Train Pipeline simulation
+  if (btnTrain) {
+    btnTrain.addEventListener("click", () => {
+      btnTrain.disabled = true;
+      btnInfer.disabled = true;
+      
+      printLine(">>> python train.py --epochs 5 --batch_size 32", "log-info");
+      
+      let epoch = 1;
+      accuracyVal.textContent = "91.2%";
+      vramVal.textContent = "15.8 GB";
+
+      const interval = setInterval(() => {
+        if (epoch <= 5) {
+          const simulatedAcc = (91.2 + (epoch * 1.5) + Math.random()).toFixed(1);
+          const loss = (0.28 - (epoch * 0.05) - Math.random() * 0.02).toFixed(3);
+          
+          printLine(`Epoch ${epoch}/5 - loss: ${loss} - accuracy: ${simulatedAcc}%`);
+          accuracyVal.textContent = `${simulatedAcc}%`;
+          
+          epoch++;
+        } else {
+          clearInterval(interval);
+          printLine("Training cycle completed. Exporting weights to 'best.pkl'...", "log-info");
+          printLine("Model accuracy optimized to 98.6%. System is ready.", "log-success");
+          
+          vramVal.textContent = "14.2 GB";
+          btnTrain.disabled = false;
+          btnInfer.disabled = false;
+        }
+      }, 800);
+    });
+  }
+
+  // Run Inference pipeline simulation
+  if (btnInfer) {
+    btnInfer.addEventListener("click", () => {
+      btnTrain.disabled = true;
+      btnInfer.disabled = true;
+
+      printLine(">>> python run_inference.py --image_path ./data/sample.jpg", "log-info");
+      
+      setTimeout(() => {
+        printLine("[INFO] Loading deep learning network parameters...");
+      }, 300);
+
+      setTimeout(() => {
+        printLine("[SUCCESS] Network model loaded (ResNet-50 backbone).");
+        latencyVal.textContent = "9ms";
+      }, 700);
+
+      setTimeout(() => {
+        printLine("[COMPUTE] Evaluating pixels & computing logits...");
+      }, 1200);
+
+      setTimeout(() => {
+        const randConf = (94.0 + Math.random() * 5).toFixed(1);
+        printLine(`[RESULT] Classes predicted: Churn Risk = YES (Confidence: ${randConf}%)`, "log-success");
+        latencyVal.textContent = "12ms";
+        btnTrain.disabled = false;
+        btnInfer.disabled = false;
+      }, 1800);
+    });
+  }
 }
