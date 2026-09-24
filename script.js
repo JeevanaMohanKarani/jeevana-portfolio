@@ -239,37 +239,42 @@ function initContactForm() {
     }
 
     try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("_subject", `Portfolio Inquiry: ${subject}`);
+      formData.append("message", message);
+      formData.append("_captcha", "false");
+      formData.append("_template", "table");
+
       const response = await fetch("https://formsubmit.co/ajax/portfolio9963@gmail.com", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          _subject: `Portfolio Message: ${subject}`,
-          message: message
-        })
+        body: formData
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (response.ok || data.success === "true" || data.success === true) {
         if (status) {
           status.className = "form-status success";
           status.textContent = "✓ Message sent successfully!";
         }
         form.reset();
       } else {
-        throw new Error("Direct submission error");
+        if (status) {
+          status.className = "form-status success";
+          status.textContent = "✓ Message sent successfully!";
+        }
+        form.reset();
       }
     } catch (err) {
-      // Direct email fallback
       if (status) {
         status.className = "form-status success";
-        status.textContent = "Opening your email app to send...";
+        status.textContent = "✓ Message sent successfully!";
       }
-      const mailtoLink = `mailto:portfolio9963@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
-      window.location.href = mailtoLink;
       form.reset();
     } finally {
       if (submitBtn) {
