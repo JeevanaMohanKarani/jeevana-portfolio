@@ -209,10 +209,11 @@ function initCopyEmail() {
 function initContactForm() {
   const form = document.getElementById("contact-form");
   const status = document.getElementById("form-status");
+  const submitBtn = document.getElementById("submit-btn");
 
   if (!form) return;
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
@@ -228,18 +229,54 @@ function initContactForm() {
       return;
     }
 
-    // Compose mailto link
-    const mailtoLink = `mailto:jeevanakarani06@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
-    
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Sending...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+    }
     if (status) {
-      status.className = "form-status success";
-      status.textContent = "Opening your email client to send...";
+      status.className = "form-status";
+      status.textContent = "Transmitting message...";
     }
 
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/portfolio9963@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          _subject: `Portfolio Message: ${subject}`,
+          message: message
+        })
+      });
+
+      if (response.ok) {
+        if (status) {
+          status.className = "form-status success";
+          status.textContent = "✓ Message sent successfully to portfolio9963@gmail.com!";
+        }
+        form.reset();
+      } else {
+        throw new Error("Direct submission error");
+      }
+    } catch (err) {
+      // Direct email fallback
+      if (status) {
+        status.className = "form-status success";
+        status.textContent = "Opening your email app to send...";
+      }
+      const mailtoLink = `mailto:portfolio9963@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
       window.location.href = mailtoLink;
       form.reset();
-    }, 600);
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>Send Message</span> <i class="fa-solid fa-paper-plane"></i>`;
+      }
+    }
   });
 }
 
