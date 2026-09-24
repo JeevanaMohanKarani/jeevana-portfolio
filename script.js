@@ -256,7 +256,7 @@ function initContactForm() {
       if (response.ok) {
         if (status) {
           status.className = "form-status success";
-          status.textContent = "✓ Message sent successfully to portfolio9963@gmail.com!";
+          status.textContent = "✓ Message sent successfully!";
         }
         form.reset();
       } else {
