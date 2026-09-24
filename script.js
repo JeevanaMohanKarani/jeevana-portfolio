@@ -239,11 +239,24 @@ function initContactForm() {
     }
 
     try {
+      const istTime = new Date().toLocaleString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      }) + ' (IST)';
+
       const formData = new FormData();
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("_subject", `Portfolio Inquiry: ${subject}`);
-      formData.append("message", message);
+      formData.append("Name", name);
+      formData.append("Email", email);
+      formData.append("Subject", subject);
+      formData.append("Message", message);
+      formData.append("Submitted_At_IST", istTime);
+      formData.append("_subject", `Portfolio Inquiry: ${subject} [${istTime}]`);
       formData.append("_captcha", "false");
       formData.append("_template", "table");
 
