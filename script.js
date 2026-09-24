@@ -180,7 +180,7 @@ function initCopyEmail() {
   const copyBtn = document.getElementById("copy-email-btn");
   const copyIcon = document.getElementById("copy-icon");
   const copyText = document.getElementById("copy-text");
-  const email = "jeevanakaranim@gmail.com";
+  const email = "jeevanakarani06@gmail.com";
 
   if (!copyBtn) return;
 
@@ -229,7 +229,7 @@ function initContactForm() {
     }
 
     // Compose mailto link
-    const mailtoLink = `mailto:jeevanakaranim@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
+    const mailtoLink = `mailto:jeevanakarani06@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
     
     if (status) {
       status.className = "form-status success";
